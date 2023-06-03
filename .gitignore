@@ -70,3 +70,7 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/Cainos/Pixel Art Top Down - Basic/Animation/AM Player E.anim.meta
+Assets/Cainos/Pixel Art Top Down - Basic/Animation/AM Player N.anim.meta
+Assets/Cainos/Pixel Art Top Down - Basic/Animation/AM Player S.anim.meta
+Assets/Cainos/Pixel Art Top Down - Basic/Animation/AM Player W.anim.meta
