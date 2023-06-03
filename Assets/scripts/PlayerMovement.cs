@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rb;
     private Vector2 _moveDir;
     private Vector2 _dashDir;
-    
+
     private SpriteRenderer _renderer;
     private State _state;
 
@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
         _animator.ResetTrigger("IsDashing");
     }
     private void Update()
-    {      
+    {
         PlayerInput();
         MovePlayer();
     }
@@ -42,17 +42,16 @@ public class PlayerMovement : MonoBehaviour
                 NormalInput();
                 break;
             case State.Dashing:
-                float dashSpeedDropMultiplier = 2f;
+                float dashSpeedDropMultiplier = 3f;
                 DashSpeed -= DashSpeed * dashSpeedDropMultiplier * Time.deltaTime;
                 float dashSpeedMinimum = 10f;
-
                 if (DashSpeed < dashSpeedMinimum)
                 {
                     _state = State.Normal;
                 }
                 break;
         }
- 
+
     }
     void NormalInput()
     {
@@ -74,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _moveDir.y = -1;
         }
-        _moveDir.Normalize(); 
+        _moveDir.Normalize();
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -84,16 +83,16 @@ public class PlayerMovement : MonoBehaviour
             _state = State.Dashing;
         }
     }
-   
+
     private void FlipPlayer()
     {
-        if (_moveDir.x == 0)  return;
+        if (_moveDir.x == 0) return;
         transform.localScale = new Vector3(_moveDir.x > 0 ? 1 : -1, 1, 1);
     }
 
     private void MovePlayer()
     {
-        
+
         switch (_state)
         {
             case State.Normal:
@@ -101,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
                 _animator.SetBool("IsMoving", _moveDir.magnitude > 0);
                 break;
             case State.Dashing:
-               _rb.velocity = _dashDir * DashSpeed;
+                _rb.velocity = _dashDir * DashSpeed;
                 break;
         }
         FlipPlayer();
