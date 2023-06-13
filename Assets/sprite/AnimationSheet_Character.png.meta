@@ -822,15 +822,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimationSheet_Character_33
+      name: dead01
       rect:
         serializedVersion: 2
         x: 7
         y: 32
-        width: 16
+        width: 28
         height: 28
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -843,15 +843,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimationSheet_Character_34
+      name: dead02
       rect:
         serializedVersion: 2
         x: 37
         y: 32
-        width: 18
-        height: 27
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 28
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -864,15 +864,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimationSheet_Character_35
+      name: dead03
       rect:
         serializedVersion: 2
         x: 70
         y: 32
-        width: 17
-        height: 25
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 29
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -885,15 +885,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimationSheet_Character_38
+      name: dead06
       rect:
         serializedVersion: 2
         x: 162
         y: 32
         width: 29
-        height: 12
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -906,15 +906,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimationSheet_Character_39
+      name: dead07
       rect:
         serializedVersion: 2
         x: 194
         y: 32
         width: 29
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -927,15 +927,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimationSheet_Character_40
+      name: dead08
       rect:
         serializedVersion: 2
         x: 226
         y: 32
         width: 29
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1074,15 +1074,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimationSheet_Character_36
+      name: dead04
       rect:
         serializedVersion: 2
         x: 103
         y: 32
-        width: 17
-        height: 25
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 28
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1116,15 +1116,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AnimationSheet_Character_37
+      name: dead05
       rect:
         serializedVersion: 2
-        x: 134
-        y: 31
-        width: 22
-        height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 135
+        y: 32
+        width: 26
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1176,14 +1176,6 @@ TextureImporter:
       AnimationSheet_Character_27: -1678485989
       AnimationSheet_Character_28: -469004246
       AnimationSheet_Character_29: -232413295
-      AnimationSheet_Character_33: 1995424057
-      AnimationSheet_Character_34: 1632655449
-      AnimationSheet_Character_35: 1193512069
-      AnimationSheet_Character_36: -2006141268
-      AnimationSheet_Character_37: -471837761
-      AnimationSheet_Character_38: -1079847835
-      AnimationSheet_Character_39: -1629167424
-      AnimationSheet_Character_40: 1607387081
       AnimationSheet_Character_41: 268853239
       AnimationSheet_Character_42: 1298394611
       AnimationSheet_Character_43: -160209912
@@ -1194,6 +1186,14 @@ TextureImporter:
       AnimationSheet_Character_48: -1116439823
       blink01: -2129400383
       blink02: -1833511241
+      dead01: 1995424057
+      dead02: 1632655449
+      dead03: 1193512069
+      dead04: -2006141268
+      dead05: -471837761
+      dead06: -1079847835
+      dead07: -1629167424
+      dead08: 1607387081
       hiding01: -1479969820
       hiding02: 412777434
       hiding03: -605402525
