@@ -18381,7 +18381,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7141912506297488672, guid: 2b026e0edebd7df4884f26fd83777f4a, type: 3}
       propertyPath: m_Intensity
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7141912506297488673, guid: 2b026e0edebd7df4884f26fd83777f4a, type: 3}
       propertyPath: m_Name
