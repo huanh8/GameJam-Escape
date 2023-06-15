@@ -14990,9 +14990,9 @@ MonoBehaviour:
   PlayerState: 0
   _coolDown: 1.5
   nextDash: 0
-  _canDash: 0
-  _canMove: 1
-  invincible: 0
+  CanDash: 0
+  CanMove: 0
+  Invincible: 0
   SpawnPoint: {fileID: 0}
 --- !u!114 &8762207268330127700
 MonoBehaviour:

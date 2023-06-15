@@ -16,9 +16,9 @@ public class PlayerMovement : MonoBehaviour
     [Range(0, 5)][SerializeField] private float _coolDown = 1.5f;
     [SerializeField] private float nextDash = 0;
 
-    public bool _canDash = false;
-    public bool _canMove = true;
-    public bool invincible = false;
+    public bool CanDash = false;
+    public bool CanMove;
+    public bool Invincible = false;
     public GameObject SpawnPoint;
 
     public enum State
@@ -35,14 +35,14 @@ public class PlayerMovement : MonoBehaviour
         _renderer = GetComponent<SpriteRenderer>();
         _animator.ResetTrigger("IsDashing");
         _animator.SetBool("IsDead", false);
-        _canMove = true;
+        CanMove = false;
     }
     private void Update()
     {
-        if (!_canMove) return;
+        if (!CanMove) return;
         PlayerInput();
         MovePlayer();
-        UIManager.instance.ShowHint(_canDash);
+        UIManager.instance.ShowHint(CanDash);
     }
 
     private void PlayerInput()
@@ -85,24 +85,24 @@ public class PlayerMovement : MonoBehaviour
         }
         _moveDir.Normalize();
 
-        if (Input.GetKeyDown(KeyCode.Space) && _canDash)
+        if (Input.GetKeyDown(KeyCode.Space) && CanDash)
         {
             if (Time.time >= nextDash)
             {
                 nextDash = Time.time + _coolDown;
                 PlayDash();
-                StartCoroutine(Invincible());
+                StartCoroutine(PlayInvincible());
             }
         }
     }
 
-    IEnumerator Invincible()
+    IEnumerator PlayInvincible()
     {
-        invincible = true;
+        Invincible = true;
         _renderer.color = new Color(1f, 1f, 1f, 0.5f);
         yield return new WaitForSeconds(0.8f);
         _renderer.color = new Color(1f, 1f, 1f, 1f);
-        invincible = false;
+        Invincible = false;
     }
     private void PlayDash()
     {
@@ -138,24 +138,24 @@ public class PlayerMovement : MonoBehaviour
     {
         _animator.SetBool("IsDead", true);
         _rb.velocity = Vector2.zero;
-        _canDash = false;
-        _canMove = false;
+        CanDash = false;
+        CanMove = false;
     }
 
     [ContextMenu("Reset")]
     public void Reset()
     {
         _animator.SetBool("IsDead", false);
-        _canMove = true;
+        CanMove = true;
         _rb.position = SpawnPoint.transform.position;
     }
 
     public void EnableDash()
     {
-        _canDash = true;
+        CanDash = true;
     }
     public void DisableDash()
     {
-        _canDash = false;
+        CanDash = false;
     }
 }

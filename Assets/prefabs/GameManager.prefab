@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyCount: 0
-  maxKeyCount: 4
+  maxKeyCount: 1
 --- !u!1 &4260644020411585802
 GameObject:
   m_ObjectHideFlags: 0

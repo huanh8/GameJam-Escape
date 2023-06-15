@@ -5,18 +5,32 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
+    public PlayerMovement player;
+    public GameObject Game_UI;
+    public GameObject MainMenu;
+
+    private void Awake()
+    {
+        MainMenu.SetActive(true);
+        Game_UI.SetActive(false);
+    }
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        MainMenu.SetActive(false);
+        player.CanMove = true;
+        Game_UI.SetActive(true);
     }
 
     public void QuitGame()
     {
         Application.Quit();
     }
-    
-    public void BackToMenu () {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);   
+
+    public void BackToMenu()
+    {
+        MainMenu.SetActive(true);
+        player.CanMove = false;
+        Game_UI.SetActive(false);
     }
 
 }

@@ -6,10 +6,11 @@ public class PlayerTrigger : MonoBehaviour
 {
     // trap tag
     public string trapTag = "Trap";
-     public string abilityTag = "Ability";
+    public string abilityTag = "Ability";
     private PlayerMovement _player;
 
-    private void Start() {
+    private void Start()
+    {
         _player = GetComponent<PlayerMovement>();
     }
     //on trigger enter
@@ -18,7 +19,7 @@ public class PlayerTrigger : MonoBehaviour
         // if the tag is trap
         if (other.tag == trapTag)
         {
-            if (_player.invincible) return;
+            if (_player.Invincible) return;
             _player.PlayerDead();
         }
         if (other.tag == abilityTag)
