@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Trap
+  - Ability
   layers:
   - Default
   - TransparentFX
