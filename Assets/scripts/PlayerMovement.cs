@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
         _animator.ResetTrigger("IsDashing");
+        transform.position = SpawnPoint.transform.position;
     }
     private void Update()
     {
