@@ -12,21 +12,23 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _dashDir;
 
     private SpriteRenderer _renderer;
-    private State _state;
+    public State PlayerState;
     [Range(0, 5)][SerializeField] private float _coolDown = 1.5f;
     [SerializeField] private float nextDash = 0;
 
-    private bool _canDash = true;
+    public bool _canDash = false;
+    public bool _canMove = true;
+    public bool invincible = false;
 
-    enum State
+    public enum State
     {
         Normal,
-        Dashing,
+        Dashing
     }
 
     private void Start()
     {
-        _state = State.Normal;
+        PlayerState = State.Normal;
         _animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
@@ -34,13 +36,14 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
+        if (!_canMove) return;
         PlayerInput();
         MovePlayer();
     }
 
     private void PlayerInput()
     {
-        switch (_state)
+        switch (PlayerState)
         {
             case State.Normal:
                 NormalInput();
@@ -51,11 +54,10 @@ public class PlayerMovement : MonoBehaviour
                 float dashSpeedMinimum = 10f;
                 if (DashSpeed < dashSpeedMinimum)
                 {
-                    _state = State.Normal;
+                    PlayerState = State.Normal;
                 }
                 break;
         }
-
     }
     void NormalInput()
     {
@@ -80,23 +82,31 @@ public class PlayerMovement : MonoBehaviour
         _moveDir.Normalize();
 
         if (Input.GetKeyDown(KeyCode.Space) && _canDash)
-
         {
             if (Time.time >= nextDash)
             {
                 nextDash = Time.time + _coolDown;
                 PlayDash();
-            }
-            
+                StartCoroutine(Invincible());
+            }       
         }
     }
 
+    IEnumerator Invincible()
+    {
+        invincible = true;
+        _renderer.color = new Color(1f, 1f, 1f, 0.5f);
+        yield return new WaitForSeconds(0.8f);
+        _renderer.color = new Color(1f, 1f, 1f, 1f);
+        invincible = false;
+    }
     private void PlayDash()
     {
+
         DashSpeed = 15f;
         _animator.SetTrigger("IsDashing");
         _dashDir = _moveDir;
-        _state = State.Dashing;
+        PlayerState = State.Dashing;
     }
 
     private void FlipPlayer()
@@ -108,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
 
-        switch (_state)
+        switch (PlayerState)
         {
             case State.Normal:
                 _rb.velocity = MoveSpeed * _moveDir;
@@ -121,6 +131,25 @@ public class PlayerMovement : MonoBehaviour
         FlipPlayer();
 
     }
+    public void PlayerDead()
+    {
+        _animator.SetBool("IsDead", true);
+        _rb.velocity = Vector2.zero;
+        _canDash = false;    
+        _canMove = false;      
+    }
 
-
+    [ContextMenu("Reset")]
+    public void Reset() { 
+        _animator.SetBool("IsDead", false);
+        _canMove = true;
+    }
+    public void EnableDash()
+    {
+        _canDash = true;
+    }
+    public void DisableDash()
+    {
+        _canDash = false;
+    }
 }
