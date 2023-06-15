@@ -13,6 +13,10 @@ public class PlayerMovement : MonoBehaviour
 
     private SpriteRenderer _renderer;
     private State _state;
+    [Range(0, 5)][SerializeField] private float _coolDown = 1.5f;
+    [SerializeField] private float nextDash = 0;
+
+    private bool _canDash = true;
 
     enum State
     {
@@ -75,13 +79,24 @@ public class PlayerMovement : MonoBehaviour
         }
         _moveDir.Normalize();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && _canDash)
+
         {
-            DashSpeed = 15f;
-            _animator.SetTrigger("IsDashing");
-            _dashDir = _moveDir;
-            _state = State.Dashing;
+            if (Time.time >= nextDash)
+            {
+                nextDash = Time.time + _coolDown;
+                PlayDash();
+            }
+            
         }
+    }
+
+    private void PlayDash()
+    {
+        DashSpeed = 15f;
+        _animator.SetTrigger("IsDashing");
+        _dashDir = _moveDir;
+        _state = State.Dashing;
     }
 
     private void FlipPlayer()
