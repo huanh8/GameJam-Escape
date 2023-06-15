@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    private void Awake() {
+    private void Awake()
+    {
         if (instance == null)
         {
             instance = this;
@@ -18,6 +19,11 @@ public class GameManager : MonoBehaviour
 
     public int keyCount = 0;
     public int maxKeyCount = 4;
+
+    private void Update()
+    {
+        OpenTheFinalDoor();
+    }
     public void AddKey()
     {
         keyCount++;
@@ -32,6 +38,14 @@ public class GameManager : MonoBehaviour
         if (keyCount <= 0)
         {
             keyCount = 0;
+        }
+    }
+    public void OpenTheFinalDoor()
+    {
+        if (keyCount >= maxKeyCount)
+        {
+            //open the door
+            Debug.Log("Open the door");
         }
     }
 }

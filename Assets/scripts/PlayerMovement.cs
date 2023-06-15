@@ -34,7 +34,8 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
         _animator.ResetTrigger("IsDashing");
-        transform.position = SpawnPoint.transform.position;
+        _animator.SetBool("IsDead", false);
+        _canMove = true;
     }
     private void Update()
     {
@@ -91,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
                 nextDash = Time.time + _coolDown;
                 PlayDash();
                 StartCoroutine(Invincible());
-            }       
+            }
         }
     }
 
@@ -105,7 +106,6 @@ public class PlayerMovement : MonoBehaviour
     }
     private void PlayDash()
     {
-
         DashSpeed = 15f;
         _animator.SetTrigger("IsDashing");
         _dashDir = _moveDir;
@@ -138,16 +138,16 @@ public class PlayerMovement : MonoBehaviour
     {
         _animator.SetBool("IsDead", true);
         _rb.velocity = Vector2.zero;
-        _canDash = false;    
-        _canMove = false;   
+        _canDash = false;
+        _canMove = false;
     }
 
-
     [ContextMenu("Reset")]
-    public void Reset() { 
+    public void Reset()
+    {
         _animator.SetBool("IsDead", false);
         _canMove = true;
-        transform.position = SpawnPoint.transform.position;
+        _rb.position = SpawnPoint.transform.position;
     }
 
     public void EnableDash()

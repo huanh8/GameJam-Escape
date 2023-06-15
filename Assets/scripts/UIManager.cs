@@ -9,28 +9,35 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI keyText;
     public TextMeshProUGUI taskText;
     public TextMeshProUGUI abilityText;
+    public GameObject WinPanel;
     public int keyLeft;
     public string hint = "Hint :  Press 'SPACE' to dash and you will be invincible.";
 
-    private void Awake() {
-        if(instance == null)
+
+    private void Awake()
+    {
+        if (instance == null)
         {
             instance = this;
-        }else{
+        }
+        else
+        {
             Destroy(gameObject);
         }
+        WinPanel.SetActive(false);
     }
 
-    private void Update() {
+    private void Update()
+    {
 
         UpdateKeyText(GameManager.instance.keyCount);
-        keyLeft= GameManager.instance.maxKeyCount - GameManager.instance.keyCount;
+        keyLeft = GameManager.instance.maxKeyCount - GameManager.instance.keyCount;
         UpdateTaskText();
     }
 
     public void UpdateKeyText(int keyCount)
     {
-        keyText.text = "x "+ keyCount.ToString();
+        keyText.text = "x " + keyCount.ToString();
     }
     public void UpdateTaskText()
     {
@@ -55,4 +62,8 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void ShowWinPanel(bool show)
+    {
+        WinPanel.SetActive(show);
+    }
 }

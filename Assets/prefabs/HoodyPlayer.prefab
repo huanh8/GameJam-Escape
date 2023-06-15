@@ -14829,7 +14829,7 @@ GameObject:
   - component: {fileID: 4000077970197780947}
   - component: {fileID: 8762207268330127700}
   - component: {fileID: 174500193802421331}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: HoodyPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -14843,7 +14843,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8762207268330127701}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.97, y: 1.442, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14987,8 +14987,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 3
   DashSpeed: 0
+  PlayerState: 0
   _coolDown: 1.5
   nextDash: 0
+  _canDash: 0
+  _canMove: 1
+  invincible: 0
+  SpawnPoint: {fileID: 0}
 --- !u!114 &8762207268330127700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15020,6 +15025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trapTag: Trap
+  abilityTag: Ability
 --- !u!1 &8762207269857758345
 GameObject:
   m_ObjectHideFlags: 0
@@ -15030,7 +15036,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8762207269857758346}
   - component: {fileID: 8762207269857758347}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
