@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI taskText;
     public TextMeshProUGUI abilityText;
     public int keyLeft;
+    public string hint = "Hint :  Press 'SPACE' to dash and you will be invincible.";
 
     private void Awake() {
         if(instance == null)
@@ -40,4 +41,18 @@ public class UIManager : MonoBehaviour
         }
         taskText.text = $"Task : Find {keyLeft.ToString()} key(s) to unlock the door.";
     }
+
+
+    public void ShowHint(bool enable)
+    {
+        if (enable)
+        {
+            abilityText.text = hint;
+        }
+        else
+        {
+            abilityText.text = "";
+        }
+    }
+
 }
