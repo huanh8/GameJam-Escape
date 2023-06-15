@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public bool _canDash = false;
     public bool _canMove = true;
     public bool invincible = false;
+    public GameObject SpawnPoint;
 
     public enum State
     {
@@ -137,14 +138,17 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetBool("IsDead", true);
         _rb.velocity = Vector2.zero;
         _canDash = false;    
-        _canMove = false;      
+        _canMove = false;   
     }
+
 
     [ContextMenu("Reset")]
     public void Reset() { 
         _animator.SetBool("IsDead", false);
         _canMove = true;
+        transform.position = SpawnPoint.transform.position;
     }
+
     public void EnableDash()
     {
         _canDash = true;
