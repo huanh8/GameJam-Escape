@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,6 +21,16 @@ public class PlayerMovement : MonoBehaviour
     public bool CanMove;
     public bool Invincible = false;
     public GameObject SpawnPoint;
+    public static UnityAction OnPlayerReset;
+
+    private void OnEnable()
+    {
+        GameManager.OnRestart += ResetPlayer;
+    }
+    private void OnDisable()
+    {
+        GameManager.OnRestart -= ResetPlayer;
+    }
 
     public enum State
     {
@@ -142,19 +153,24 @@ public class PlayerMovement : MonoBehaviour
     }
 
     [ContextMenu("Reset")]
-    public void Reset()
+    public void ResetPlayer()
     {
         _animator.SetBool("IsDead", false);
         CanMove = true;
         _rb.position = SpawnPoint.transform.position;
+        DisableDash();
+        Debug.Log("Reset Player");
+        OnPlayerReset?.Invoke();
     }
 
     public void EnableDash()
     {
         CanDash = true;
+        UIManager.instance.ShowHint(CanDash);
     }
     public void DisableDash()
     {
         CanDash = false;
+        UIManager.instance.ShowHint(CanDash);
     }
 }

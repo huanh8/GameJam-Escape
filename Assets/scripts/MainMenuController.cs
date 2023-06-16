@@ -17,8 +17,9 @@ public class MainMenuController : MonoBehaviour
     public void PlayGame()
     {
         MainMenu.SetActive(false);
-        player.CanMove = true;
+        // player.CanMove = true;
         Game_UI.SetActive(true);
+        GameManager.instance.RestartGame();
     }
 
     public void QuitGame()
