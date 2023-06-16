@@ -138,7 +138,6 @@ public class PlayerMovement : MonoBehaviour
     {
         _animator.SetBool("IsDead", true);
         _rb.velocity = Vector2.zero;
-        CanDash = false;
         CanMove = false;
     }
 
