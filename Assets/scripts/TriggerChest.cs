@@ -28,5 +28,11 @@ public class TriggerChest : MonoBehaviour
 
         }
     }
+    public void ResetChest()
+    {
+        keyAnimator.SetBool("IsKey", false);
+        hasKey = true;
+        chest.Close();
+    }
     
 }

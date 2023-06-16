@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cainos.LucidEditor;
 
+
 namespace Cainos.PixelArtPlatformer_VillageProps
 {
     public class Chest : MonoBehaviour
