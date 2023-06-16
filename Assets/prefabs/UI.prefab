@@ -2639,7 +2639,7 @@ MonoBehaviour:
   taskText: {fileID: 213023815596984486}
   abilityText: {fileID: 213023816919249784}
   WinPanel: {fileID: 1022606020}
-  keyLeft: 0
+  keyLeft: 4
   hint: 'Hint :  Press ''SPACE'' to dash and you will be invincible.'
 --- !u!1 &213023816970474123
 GameObject:
