@@ -48,4 +48,9 @@ public class AudioManager : MonoBehaviour
     {
         sfxSource.PlayOneShot(sfxClips[5]);
     }
+
+    public void PlayWin()
+    {
+        bgmSource.PlayOneShot(sfxClips[6]);
+    }
 }

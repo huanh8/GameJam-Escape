@@ -8,10 +8,10 @@ public class PlayerMovement : MonoBehaviour
     public float MoveSpeed = 3f;
     public float DashSpeed;
     private Animator _animator;
+    private AudioManager _audioManager;
     private Rigidbody2D _rb;
     private Vector2 _moveDir;
     private Vector2 _dashDir;
-    private AudioManager _audioManager;
 
     private SpriteRenderer _renderer;
     public State PlayerState;
