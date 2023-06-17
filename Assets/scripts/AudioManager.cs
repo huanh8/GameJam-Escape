@@ -1,0 +1,12 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AudioManager : MonoBehaviour
+{
+    public AudioSource bgmSource;
+    public AudioSource sfxSource;
+
+    public List<AudioClip> sfxClips;
+    
+}
