@@ -33,7 +33,6 @@ public class RiddleManager : MonoBehaviour
         {
             box.transform.position = Box01DefaultPos[PushingBoxes.IndexOf(box)];
         }
-        Debug.Log("Reset pushing boxes");
     }
 
     void ResetChest()

@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
 
     public PlayerMovement player;
 
-    public AudioManager _audioManager;
 
     private void Awake()
     {
@@ -32,7 +31,6 @@ public class GameManager : MonoBehaviour
     {
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
         finalBlock.SetActive(false);
-        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
 
@@ -48,11 +46,11 @@ public class GameManager : MonoBehaviour
     public void AddKey()
     {
         keyCount++;
-        _audioManager.PlayGetKey();
+        AudioManager.instance?.PlayGetKey();
         if (keyCount >= maxKeyCount)
         {
             keyCount = maxKeyCount;
-            _audioManager.PlayUnlockDoor();
+            AudioManager.instance?.PlayUnlockDoor();
         }
     }
     public void UseKey()
@@ -71,9 +69,12 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
+        Time.timeScale = 1;
         OnRestart.Invoke();
         keyCount = 0;
         player?.DisableDash();
+        UIManager.instance?.ShowWinPanel(false); 
+        AudioManager.instance?.PlayBackground();
     }
     private void ShowRoadblock(bool show)
     {
