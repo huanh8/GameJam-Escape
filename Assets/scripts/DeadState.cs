@@ -7,6 +7,7 @@ public class DeadState : StateMachineBehaviour
     public SpriteRenderer _spriteRenderer;
     public Vector2 _originalSize;
     public Vector2 _newSize = new Vector2(1f,1f);
+    private PlayerMovement _playerMovement;
 
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -15,6 +16,7 @@ public class DeadState : StateMachineBehaviour
        _spriteRenderer = animator.GetComponent<SpriteRenderer>();
          _originalSize = _spriteRenderer.size;
        _spriteRenderer.size = _newSize;
+       _playerMovement = animator.GetComponent<PlayerMovement>();
 
     }
 
