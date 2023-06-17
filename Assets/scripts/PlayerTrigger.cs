@@ -7,6 +7,7 @@ public class PlayerTrigger : MonoBehaviour
     // trap tag
     public string trapTag = "Trap";
     public string abilityTag = "Ability";
+    public string finalDoor = "FinalDoor";
     private PlayerMovement _player;
 
     private void Start()
@@ -17,14 +18,21 @@ public class PlayerTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // if the tag is trap
-        if (other.tag == trapTag)
+        if (other.CompareTag(trapTag))
         {
             if (_player.Invincible) return;
             _player.PlayerDead();
         }
-        if (other.tag == abilityTag)
+        if (other.CompareTag(abilityTag))
         {
             _player.EnableDash();
+        }
+        if (other.CompareTag(finalDoor))
+        {
+            UIManager.instance.WinPanel.SetActive(true);
+            AudioManager.instance?.PlayWin();
+            _player.CanMove = false;   
+            Time.timeScale = 0; 
         }
     }
 }

@@ -14829,6 +14829,7 @@ GameObject:
   - component: {fileID: 4000077970197780947}
   - component: {fileID: 8762207268330127700}
   - component: {fileID: 174500193802421331}
+  - component: {fileID: 2502551903879302939}
   m_Layer: 20
   m_Name: Player
   m_TagString: Player
@@ -15026,6 +15027,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trapTag: Trap
   abilityTag: Ability
+  finalDoor: FinalDoor
+--- !u!81 &2502551903879302939
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8762207268330127701}
+  m_Enabled: 1
 --- !u!1 &8762207269857758345
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
     public float MoveSpeed = 3f;
     public float DashSpeed;
     private Animator _animator;
-    private AudioManager _audioManager;
     private Rigidbody2D _rb;
     private Vector2 _moveDir;
     private Vector2 _dashDir;
@@ -43,7 +42,6 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerState = State.Normal;
         _animator = GetComponent<Animator>();
-        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         _rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
         _animator.ResetTrigger("IsDashing");
@@ -82,23 +80,23 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             _moveDir.x = -1;
-            _audioManager.PlayPlayerMove();
+            AudioManager.instance?.PlayPlayerMove();
         }
         else if (Input.GetKey(KeyCode.D))
         {
             _moveDir.x = 1;
-            _audioManager.PlayPlayerMove();
+            AudioManager.instance?.PlayPlayerMove();
         }
 
         if (Input.GetKey(KeyCode.W))
         {
             _moveDir.y = 1;
-            _audioManager.PlayPlayerMove();
+            AudioManager.instance?.PlayPlayerMove();
         }
         else if (Input.GetKey(KeyCode.S))
         {
             _moveDir.y = -1;
-            _audioManager.PlayPlayerMove();
+            AudioManager.instance?.PlayPlayerMove();
         }
         _moveDir.Normalize();
 
@@ -127,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetTrigger("IsDashing");
         _dashDir = _moveDir;
         PlayerState = State.Dashing;
-        _audioManager.PlayPlayerDash();
+        AudioManager.instance?.PlayPlayerDash();
     }
 
     private void FlipPlayer()
@@ -157,14 +155,14 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetBool("IsDead", true);
         _rb.velocity = Vector2.zero;
         CanMove = false;
-        _audioManager.PlayPlayerDeath();
+        AudioManager.instance?.PlayPlayerDeath();
     }
 
     [ContextMenu("Reset")]
     public void ResetPlayer()
     {
         _animator.SetBool("IsDead", false);
-
+        _rb.velocity = Vector2.zero;
         _rb.position = SpawnPoint.transform.position;
         Debug.Log("Reset Player");
         OnPlayerReset?.Invoke();
@@ -180,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
     {
         CanDash = true;
         UIManager.instance.ShowHint(CanDash);
-        _audioManager.PlayUnlockDash();
+        AudioManager.instance?.PlayUnlockDash();
     }
     public void DisableDash()
     {

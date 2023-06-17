@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
-    
+
     public AudioSource bgmSource;
     public AudioSource sfxSource;
     public AudioSource playerSource;
@@ -15,6 +15,20 @@ public class AudioManager : MonoBehaviour
     private float footStepDelay = 0.35f;
     private float nextFootStep = 0;
 
+    private void Awake() {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+    private void Start()
+    {
+        PlayBackground();
+}
     public void PlayPlayerMove()
     {
         if (Time.time > nextFootStep)
@@ -52,5 +66,14 @@ public class AudioManager : MonoBehaviour
     public void PlayWin()
     {
         bgmSource.PlayOneShot(sfxClips[6]);
+        Debug.Log($"PlayWin called the clips is {sfxClips[6]}");
+    }
+    public void PlayBackground()
+    {        
+        Debug.Log($"PlayBackground called the clips is {sfxClips[7]}");
+        bgmSource.Stop();
+        bgmSource.clip = sfxClips[7];
+        bgmSource.loop = true;
+        bgmSource.Play();
     }
 }
