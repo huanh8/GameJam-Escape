@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rb;
     private Vector2 _moveDir;
     private Vector2 _dashDir;
+    private AudioManager _audioManager;
 
     private SpriteRenderer _renderer;
     public State PlayerState;
@@ -42,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerState = State.Normal;
         _animator = GetComponent<Animator>();
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         _rb = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
         _animator.ResetTrigger("IsDashing");
@@ -80,19 +82,23 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             _moveDir.x = -1;
+            _audioManager.PlayPlayerMove();
         }
         else if (Input.GetKey(KeyCode.D))
         {
             _moveDir.x = 1;
+            _audioManager.PlayPlayerMove();
         }
 
         if (Input.GetKey(KeyCode.W))
         {
             _moveDir.y = 1;
+            _audioManager.PlayPlayerMove();
         }
         else if (Input.GetKey(KeyCode.S))
         {
             _moveDir.y = -1;
+            _audioManager.PlayPlayerMove();
         }
         _moveDir.Normalize();
 
@@ -121,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetTrigger("IsDashing");
         _dashDir = _moveDir;
         PlayerState = State.Dashing;
+        _audioManager.PlayPlayerDash();
     }
 
     private void FlipPlayer()
@@ -150,6 +157,7 @@ public class PlayerMovement : MonoBehaviour
         _animator.SetBool("IsDead", true);
         _rb.velocity = Vector2.zero;
         CanMove = false;
+        _audioManager.PlayPlayerDeath();
     }
 
     [ContextMenu("Reset")]
