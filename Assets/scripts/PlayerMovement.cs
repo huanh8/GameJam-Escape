@@ -180,6 +180,7 @@ public class PlayerMovement : MonoBehaviour
     {
         CanDash = true;
         UIManager.instance.ShowHint(CanDash);
+        _audioManager.PlayUnlockDash();
     }
     public void DisableDash()
     {

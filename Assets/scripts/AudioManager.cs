@@ -33,4 +33,19 @@ public class AudioManager : MonoBehaviour
     {
         playerSource.PlayOneShot(sfxClips[2]);
     }
+
+    public void PlayGetKey()
+    {
+        sfxSource.PlayOneShot(sfxClips[3]);
+    }
+
+    public void PlayUnlockDash()
+    {
+        sfxSource.PlayOneShot(sfxClips[4]);
+    }
+
+    public void PlayUnlockDoor()
+    {
+        sfxSource.PlayOneShot(sfxClips[5]);
+    }
 }
