@@ -156,13 +156,18 @@ public class PlayerMovement : MonoBehaviour
     public void ResetPlayer()
     {
         _animator.SetBool("IsDead", false);
-        CanMove = true;
+
         _rb.position = SpawnPoint.transform.position;
-        DisableDash();
         Debug.Log("Reset Player");
         OnPlayerReset?.Invoke();
+        // wait for animation to finish
+        StartCoroutine(EnableMovement());
     }
-
+    IEnumerator EnableMovement()
+    {
+        yield return new WaitForSeconds(1f);
+        CanMove = true;
+    }
     public void EnableDash()
     {
         CanDash = true;
