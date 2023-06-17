@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
         if (!CanMove) return;
         PlayerInput();
         MovePlayer();
-        UIManager.instance.ShowHint(CanDash);
+        UIManager.instance?.ShowHint(CanDash);
     }
 
     private void PlayerInput()

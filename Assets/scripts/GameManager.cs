@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     public static UnityAction OnRestart;
 
     public GameObject finalTrigger;
-    public GameObject roadblock;
+    public GameObject roadBlock;
+    public GameObject finalBlock;
 
     public PlayerMovement player;
     private void Awake()
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        finalBlock.SetActive(false);
     }
 
 
@@ -36,7 +38,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         OpenTheFinalDoor();
-        ShowRoadblock(maxKeyCount - keyCount <= 1);
+        ShowRoadblock(maxKeyCount - keyCount > 1);
     }
 
     public void AddKey()
@@ -58,6 +60,7 @@ public class GameManager : MonoBehaviour
     public void OpenTheFinalDoor()
     {
         finalTrigger.SetActive(keyCount >= maxKeyCount);
+        finalBlock.SetActive(keyCount >= maxKeyCount);
     }
 
     public void RestartGame()
@@ -68,6 +71,6 @@ public class GameManager : MonoBehaviour
     }
     private void ShowRoadblock(bool show)
     {
-        roadblock.SetActive(show);
+        roadBlock.SetActive(show);
     }
 }
