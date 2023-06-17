@@ -14830,7 +14830,7 @@ GameObject:
   - component: {fileID: 8762207268330127700}
   - component: {fileID: 174500193802421331}
   m_Layer: 20
-  m_Name: HoodyPlayer
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14991,7 +14991,7 @@ MonoBehaviour:
   _coolDown: 1.5
   nextDash: 0
   CanDash: 0
-  CanMove: 0
+  CanMove: 1
   Invincible: 0
   SpawnPoint: {fileID: 0}
 --- !u!114 &8762207268330127700

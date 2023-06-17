@@ -11,7 +11,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI abilityText;
     public GameObject WinPanel;
     public int keyLeft;
-    public string hint = "Hint :  Press 'SPACE' to dash and you will be invincible.";
+    public string hint = "Hint : You will briefly enter nothingness during the DASHING.";
+    public GameObject DashKey;
 
 
     private void Awake()
@@ -55,10 +56,12 @@ public class UIManager : MonoBehaviour
         if (enable)
         {
             abilityText.text = hint;
+            DashKey.SetActive(true);
         }
         else
         {
             abilityText.text = "";
+            DashKey.SetActive(false);
         }
     }
 
