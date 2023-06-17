@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     public GameObject finalBlock;
 
     public PlayerMovement player;
+
+    public AudioManager _audioManager;
+
     private void Awake()
     {
         if (instance == null)
@@ -29,6 +32,7 @@ public class GameManager : MonoBehaviour
     {
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
         finalBlock.SetActive(false);
+        _audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
 
@@ -44,9 +48,11 @@ public class GameManager : MonoBehaviour
     public void AddKey()
     {
         keyCount++;
+        _audioManager.PlayGetKey();
         if (keyCount >= maxKeyCount)
         {
             keyCount = maxKeyCount;
+            _audioManager.PlayUnlockDoor();
         }
     }
     public void UseKey()
