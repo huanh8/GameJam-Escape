@@ -20,8 +20,10 @@ public class PlayerMovement : MonoBehaviour
     public bool CanDash = false;
     public bool CanMove;
     public bool Invincible = false;
-    public GameObject SpawnPoint;
+    public Transform SpawnPoint;
+    public Transform SpawnPointFinal;
     public static UnityAction OnPlayerReset;
+    public GameObject AbilityTrigger;
 
     private void OnEnable()
     {
@@ -161,9 +163,17 @@ public class PlayerMovement : MonoBehaviour
     [ContextMenu("Reset")]
     public void ResetPlayer()
     {
+        if (GameManager.instance.keyCount == GameManager.instance.maxKeyCount)
+        {
+            _rb.position = SpawnPointFinal.position;
+        }
+        else
+        {
+            _rb.position = SpawnPoint.position;
+        }
         _animator.SetBool("IsDead", false);
         _rb.velocity = Vector2.zero;
-        _rb.position = SpawnPoint.transform.position;
+
         Debug.Log("Reset Player");
         OnPlayerReset?.Invoke();
         // wait for animation to finish
@@ -171,7 +181,12 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator EnableMovement()
     {
-        yield return new WaitForSeconds(1f);
+        float waitTime = 2f;
+        if (GameManager.instance.keyCount == 0)
+        {
+            waitTime = 0;
+        }
+        yield return new WaitForSeconds(waitTime);
         CanMove = true;
     }
     public void EnableDash()
@@ -179,10 +194,12 @@ public class PlayerMovement : MonoBehaviour
         CanDash = true;
         UIManager.instance.ShowHint(CanDash);
         AudioManager.instance?.PlayUnlockDash();
+        AbilityTrigger.SetActive(false);
     }
     public void DisableDash()
     {
         CanDash = false;
         UIManager.instance.ShowHint(CanDash);
+        AbilityTrigger.SetActive(true);
     }
 }

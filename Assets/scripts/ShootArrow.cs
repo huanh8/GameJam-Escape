@@ -8,7 +8,7 @@ public class ShootArrow : MonoBehaviour
     public Transform arrowSpawn;
     public float timeGap = 1.0f;
 
-    void Start()
+    void OnEnable()
     {
         StartCoroutine(Shoot());
     }
