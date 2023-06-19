@@ -75,8 +75,8 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1;
-        OnRestart.Invoke();
         keyCount = 0;
+        OnRestart.Invoke();
         player?.DisableDash();
         UIManager.instance?.ShowWinPanel(false);
         AudioManager.instance?.PlayBackground();
