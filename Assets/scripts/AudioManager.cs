@@ -34,6 +34,8 @@ public class AudioManager : MonoBehaviour
         if (Time.time > nextFootStep)
         {
             nextFootStep = Time.time + footStepDelay;
+            playerSource.pitch = 1f + Random.Range (-0.2f, 0.2f);
+            playerSource.volume = Random.Range (0.1f, 0.2f);//to simulate different foot sound
             playerSource.PlayOneShot(sfxClips[0]);
         }
     }
