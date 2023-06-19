@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform SpawnPointFinal;
     public static UnityAction OnPlayerReset;
     public GameObject AbilityTrigger;
+    private IPlayerInput _playerInput;
 
     private void OnEnable()
     {
@@ -39,7 +40,9 @@ public class PlayerMovement : MonoBehaviour
         Normal,
         Dashing
     }
-
+    private void Awake() {
+        _playerInput = GetComponent<IPlayerInput>();
+    }
     private void Start()
     {
         PlayerState = State.Normal;
@@ -76,33 +79,33 @@ public class PlayerMovement : MonoBehaviour
                 break;
         }
     }
-    void NormalInput()
+void NormalInput()
     {
         _moveDir = Vector2.zero;
-        if (Input.GetKey(KeyCode.A))
+        if (_playerInput.IsMoveLeft())
         {
             _moveDir.x = -1;
             AudioManager.instance?.PlayPlayerMove();
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (_playerInput.IsMoveRight())
         {
             _moveDir.x = 1;
             AudioManager.instance?.PlayPlayerMove();
         }
 
-        if (Input.GetKey(KeyCode.W))
+        if (_playerInput.IsMoveUp())
         {
             _moveDir.y = 1;
             AudioManager.instance?.PlayPlayerMove();
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (_playerInput.IsMoveDown())
         {
             _moveDir.y = -1;
             AudioManager.instance?.PlayPlayerMove();
         }
         _moveDir.Normalize();
 
-        if (Input.GetKeyDown(KeyCode.Space) && CanDash)
+        if (_playerInput.IsDash() && CanDash)
         {
             if (Time.time >= nextDash)
             {
@@ -154,10 +157,12 @@ public class PlayerMovement : MonoBehaviour
     }
     public void PlayerDead()
     {
+        Invincible = true;
         _animator.SetBool("IsDead", true);
         _rb.velocity = Vector2.zero;
         CanMove = false;
         AudioManager.instance?.PlayPlayerDeath();
+        GameManager.instance?.CountDiedTime();
     }
 
     [ContextMenu("Reset")]
@@ -173,11 +178,11 @@ public class PlayerMovement : MonoBehaviour
         }
         _animator.SetBool("IsDead", false);
         _rb.velocity = Vector2.zero;
-
         Debug.Log("Reset Player");
         OnPlayerReset?.Invoke();
         // wait for animation to finish
         StartCoroutine(EnableMovement());
+        Invincible = false;
     }
     IEnumerator EnableMovement()
     {

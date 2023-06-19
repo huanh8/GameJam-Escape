@@ -11,8 +11,8 @@ public class MainMenuController : MonoBehaviour
 
     private void Awake()
     {
-        MainMenu.SetActive(true);
-        Game_UI.SetActive(false);
+        MainMenu?.SetActive(true);
+        Game_UI?.SetActive(false);
     }
     public void PlayGame()
     {

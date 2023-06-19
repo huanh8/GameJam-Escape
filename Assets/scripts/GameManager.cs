@@ -12,9 +12,11 @@ public class GameManager : MonoBehaviour
     public GameObject finalTrigger;
     public GameObject roadBlock;
     public GameObject finalBlock;
-
     public PlayerMovement player;
-
+    public int playerDiedCount;
+    public string spendTime = "";
+    private float startTime = 0;
+    private bool isRunning;
 
     private void Awake()
     {
@@ -30,7 +32,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerMovement>();
-        finalBlock.SetActive(false);
+        finalBlock?.SetActive(false);
+        playerDiedCount = 0;
+        isRunning = false;
     }
 
 
@@ -41,6 +45,7 @@ public class GameManager : MonoBehaviour
     {
         OpenTheFinalDoor();
         ShowRoadblock(maxKeyCount - keyCount > 1);
+        RecordTime();
     }
 
     public void AddKey()
@@ -73,11 +78,27 @@ public class GameManager : MonoBehaviour
         OnRestart.Invoke();
         keyCount = 0;
         player?.DisableDash();
-        UIManager.instance?.ShowWinPanel(false); 
+        UIManager.instance?.ShowWinPanel(false);
         AudioManager.instance?.PlayBackground();
+        playerDiedCount = 0;
+        startTime = Time.time;
+        isRunning = true;
+
     }
     private void ShowRoadblock(bool show)
     {
         roadBlock.SetActive(show);
+    }
+    public void CountDiedTime()
+    {
+        playerDiedCount++;
+    }
+    private void RecordTime()
+    {
+        if (!isRunning) return;
+        float elapsedTime = Time.time - startTime;
+        int minutes = Mathf.FloorToInt(elapsedTime / 60);
+        int seconds = Mathf.FloorToInt(elapsedTime % 60);
+        spendTime = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }
