@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI taskText;
     public TextMeshProUGUI abilityText;
     public GameObject WinPanel;
+    public TextMeshProUGUI WinText;
     public int keyLeft;
     public string hint = "Hint : You will briefly enter nothingness during the DASHING.";
     public GameObject DashKey;
@@ -30,10 +31,10 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-
         UpdateKeyText(GameManager.instance.keyCount);
         keyLeft = GameManager.instance.maxKeyCount - GameManager.instance.keyCount;
         UpdateTaskText();
+        UpdateWinText();
     }
 
     public void UpdateKeyText(int keyCount)
@@ -68,5 +69,11 @@ public class UIManager : MonoBehaviour
     public void ShowWinPanel(bool show)
     {
         WinPanel.SetActive(show);
+    }
+    private void UpdateWinText()
+    {
+        if (WinText.text == null) return;
+        WinText.text = $"You have died {GameManager.instance.playerDiedCount} times.\n" +
+            $"Total time: {GameManager.instance.spendTime}.\n";
     }
 }
